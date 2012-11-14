@@ -106,7 +106,8 @@ namespace YouTubeDownloader
         {
             // Open a connection
             HttpWebRequest WebRequestObject = (HttpWebRequest)HttpWebRequest.Create(Url);
-            WebRequestObject.Proxy = InitialProxy();
+            //WebRequestObject.Proxy = InitialProxy();
+            WebRequestObject.Proxy = null;
             // You can also specify additional header values like 
             // the user agent or the referer:
             WebRequestObject.UserAgent = ".NET Framework/2.0";
