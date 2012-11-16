@@ -17,6 +17,7 @@ namespace B3
     public partial class Search : Form
     {
         private FFMpegInstance ffmpeg;
+        private EncodingProgress encodingProgressDialog;
 
         public Search()
         {
@@ -87,6 +88,9 @@ namespace B3
 
             var outputFile = Path.Combine(txtBrowse.Text, downloader.Video.VideoTitle + ".mp3");
 
+            encodingProgressDialog = new EncodingProgress();
+            encodingProgressDialog.Show();
+
             encoder.EncodeVideoAsync(file, "-ab 192000", outputFile, this, 1);
 
             encoder.OnEncodeProgress += encoder_OnEncodeProgress;
@@ -101,6 +105,8 @@ namespace B3
         void encoder_OnEncodeFinished(object sender, EncodeFinishedEventArgs e)
         {
             Console.WriteLine("Encode finished");
+
+            encodingProgressDialog.Close();
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)

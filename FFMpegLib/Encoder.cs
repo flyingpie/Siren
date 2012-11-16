@@ -307,6 +307,11 @@ namespace VideoEncoder
                     else
                         DoEncodeProgress(epe);
                 }
+                else if (e.Data.Contains("time="))
+                {
+                    var time = DateTime.Parse(e.Data.Substring(e.Data.IndexOf("time=") + 5, 8));
+                    
+                }
                 else
                     //Increment progress error
                     iProgressErrorCount++;
