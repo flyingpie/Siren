@@ -8,8 +8,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using B3.ViewModels;
 using FFMpegLib;
 using VideoEncoder;
+using YouTubeDownloader;
 using YouTubeLib;
 
 namespace B3
@@ -17,7 +19,6 @@ namespace B3
     public partial class Search : Form
     {
         private FFMpegInstance ffmpeg;
-        private EncodingProgress encodingProgressDialog;
 
         public Search()
         {
@@ -66,47 +67,27 @@ namespace B3
 
                 var urls = YouTubeDownloader.YouTubeDownloader.GetYouTubeVideoUrls(new string[] { String.Format("http://www.youtube.com{0}", video.Link) });
 
-                //Directory.CreateDirectory("output");
-                output = Path.Combine(ffmpeg.OutputPath, urls[0].VideoTitle);
-                var downloader = new YouTubeDownloader.frmFileDownloader(urls[0].DownloadUrl, output);
-                downloader.Video = urls[0];
-                downloader.FormClosed += downloader_FormClosed;
-                downloader.Show();
+                var formattedTitle = Download.ConvertTitleToFilename(video.Title);
+                var output = Path.Combine(ffmpeg.OutputPath, formattedTitle);
+
+                // Downloader
+                var downloader = new FileDownloader(urls[0].DownloadUrl, ffmpeg.OutputPath, formattedTitle);
+
+                // Encoder
+                var encoder = new Encoder();
+                encoder.FFmpegPath = ffmpeg.ExecutablePath;
+
+                downloader.RunWorkerCompleted += (object s, RunWorkerCompletedEventArgs ev) =>
+                {
+                    encoder.EncodeVideoAsync(new VideoFile(output), "-ab 192000", Path.Combine(txtBrowse.Text, formattedTitle + ".mp3"), this, 1);
+                };
+
+                var viewModel = new DownloadDialogModel(downloader, encoder, video);
+                var view = new DownloadDialog(viewModel);
+                view.Show();
+
+                downloader.RunWorkerAsync();
             }
-        }
-
-        private String output = String.Empty;
-
-        void downloader_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Encoder encoder = new Encoder();
-            encoder.FFmpegPath = ffmpeg.ExecutablePath; //"ffmpeg.exe";
-
-            VideoFile file = new VideoFile(output);
-
-            YouTubeDownloader.frmFileDownloader downloader = (YouTubeDownloader.frmFileDownloader)sender;
-
-            var outputFile = Path.Combine(txtBrowse.Text, downloader.Video.VideoTitle + ".mp3");
-
-            encodingProgressDialog = new EncodingProgress();
-            encodingProgressDialog.Show();
-
-            encoder.EncodeVideoAsync(file, "-ab 192000", outputFile, this, 1);
-
-            encoder.OnEncodeProgress += encoder_OnEncodeProgress;
-            encoder.OnEncodeFinished += encoder_OnEncodeFinished;
-        }
-
-        void encoder_OnEncodeProgress(object sender, EncodeProgressEventArgs e)
-        {
-            Console.WriteLine("Encode progress: " + Math.Round(((float)e.CurrentFrame / (float)e.TotalFrames) * 100, 2));
-        }
-
-        void encoder_OnEncodeFinished(object sender, EncodeFinishedEventArgs e)
-        {
-            Console.WriteLine("Encode finished");
-
-            encodingProgressDialog.Close();
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -123,14 +104,6 @@ namespace B3
 
         void Search_FormClosed(object sender, FormClosedEventArgs e)
         {
-            /*
-            var output = Directory.GetFiles();
-
-            foreach (var file in output)
-            {
-                File.Delete(file);
-            }*/
-
             ffmpeg.Dispose();
         }
     }

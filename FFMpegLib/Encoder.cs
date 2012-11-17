@@ -14,6 +14,8 @@ namespace VideoEncoder
         public short Percentage { get; set; }
         public long CurrentFrame { get; set; }
         public long TotalFrames { get; set; }
+        public int BytesPerSecond { get; set; }
+        public long Eta { get; set; }
     }
 
     public class EncodeFinishedEventArgs : EventArgs
@@ -35,6 +37,10 @@ namespace VideoEncoder
 
         public event EncodeProgressEventHandler OnEncodeProgress;
         public event EncodeFinishedEventHandler OnEncodeFinished;
+
+        private int lastSize = 0;
+        private DateTime lastSizeTime;
+        private long lastTime = 0;
 
         protected virtual void DoEncodeProgress(EncodeProgressEventArgs e)
         {
@@ -309,8 +315,46 @@ namespace VideoEncoder
                 }
                 else if (e.Data.Contains("time="))
                 {
-                    var time = DateTime.Parse(e.Data.Substring(e.Data.IndexOf("time=") + 5, 8));
+                    var time = TimeSpan.Parse(e.Data.Substring(e.Data.IndexOf("time=") + 5, 8));
+                    var seconds = time.TotalSeconds;
+                    var totalSeconds = tempVideoFile.Duration.TotalSeconds;
+
+                    var epe = new EncodeProgressEventArgs();
+
+                    epe.Percentage = (short)Math.Round(seconds / totalSeconds * 100.0);
+
                     
+                    var sizeString = e.Data.Substring(e.Data.IndexOf("size=") + 5);
+                    var sizeEnd = sizeString.IndexOf("kB");
+                    sizeString = sizeString.Substring(0, sizeEnd).Trim();
+                    var size = int.Parse(sizeString);
+
+                    if (lastSizeTime != null)
+                    {
+                        var elapsed = (DateTime.Now - lastSizeTime).TotalMilliseconds;
+                        var processed = size - lastSize;
+
+                        epe.BytesPerSecond = (int)Math.Round(processed * (1000 / elapsed));
+
+                        // Eta
+                        var timeProcessed = (int)Math.Round(seconds - lastTime);
+                        var timePerSecond = (int)Math.Round(timeProcessed * (1000 / elapsed));
+
+                        var timeLeft = tempVideoFile.Duration.TotalSeconds - seconds;
+                        epe.Eta = (long)Math.Round((float)timeLeft / (float)timePerSecond);
+                    }
+
+                    lastSizeTime = DateTime.Now;
+                    lastSize = size;
+                    lastTime = (long)seconds;
+
+                    if (epe.BytesPerSecond < 0) epe.BytesPerSecond = 0;
+                    if (epe.Eta < 0) epe.Eta = 0;
+
+                    if (tempCaller != null)
+                        tempCaller.BeginInvoke(new EncodeProgressEventHandler(OnEncodeProgress), tempCaller, epe);
+                    else
+                        DoEncodeProgress(epe);
                 }
                 else
                     //Increment progress error

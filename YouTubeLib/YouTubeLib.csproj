@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Download.cs" />
+    <Compile Include="DownloadEventArgs.cs" />
     <Compile Include="Query.cs" />
     <Compile Include="Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
