@@ -14,7 +14,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Net;
  
-namespace YouTubeDownloader
+namespace YouTubeLib
 {
     public static class FormatLeftTime
     {

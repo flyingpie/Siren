@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using VideoEncoder;
-using YouTubeDownloader;
+//using YouTubeDownloader;
 using YouTubeLib;
 
 namespace B3.ViewModels
@@ -20,7 +20,7 @@ namespace B3.ViewModels
         private const String TitleDownloading = "Downloading...";
         private const String TitleEncoding = "Encoding...";
 
-        private FileDownloader downloader;
+        private Download downloader;
         private Encoder encoder;
 
         private String title;
@@ -31,7 +31,7 @@ namespace B3.ViewModels
         private Video video;
         private ProcessState state;
 
-        public DownloadDialogModel(FileDownloader downloader, Encoder encoder, Video video)
+        public DownloadDialogModel(Download downloader, Encoder encoder, Video video)
         {
             this.downloader = downloader;
             this.downloader.ProgressChanged += DownloaderProgressChanged;

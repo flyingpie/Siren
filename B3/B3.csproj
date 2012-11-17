@@ -111,10 +111,6 @@
       <Project>{64418566-aea3-43ed-ad0d-ab6701ec66a5}</Project>
       <Name>FFMpegLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YouTubeDownloader\YouTubeDownloader.csproj">
-      <Project>{91aeac8c-b63e-4447-a550-522f19f1f902}</Project>
-      <Name>YouTubeDownloader</Name>
-    </ProjectReference>
     <ProjectReference Include="..\YouTubeLib\YouTubeLib.csproj">
       <Project>{3d0d3a35-c516-43d8-b9b6-7b4d47a72194}</Project>
       <Name>YouTubeLib</Name>
@@ -132,7 +128,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release ILMerge /ndebug /targetplatform:4.0 /out:B3Merge.exe B3.exe FFMpegLib.dll HtmlAgilityPack.dll Newtonsoft.Json.dll YouTubeDownloader.dll YouTubeLib.dll</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Release ILMerge /ndebug /targetplatform:4.0 /out:B3Merge.exe B3.exe FFMpegLib.dll HtmlAgilityPack.dll Newtonsoft.Json.dll YouTubeLib.dll</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

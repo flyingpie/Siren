@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using B3.ViewModels;
 using FFMpegLib;
 using VideoEncoder;
-using YouTubeDownloader;
+//using YouTubeDownloader;
 using YouTubeLib;
 
 namespace B3
@@ -64,14 +64,15 @@ namespace B3
             if (listView1.SelectedItems.Count == 1)
             {
                 Video video = listView1.SelectedItems[0].Tag as Video;
-
-                var urls = YouTubeDownloader.YouTubeDownloader.GetYouTubeVideoUrls(new string[] { String.Format("http://www.youtube.com{0}", video.Link) });
+                
+                //var urls = YouTubeDownloader.YouTubeDownloader.GetYouTubeVideoUrls(new string[] { String.Format("http://www.youtube.com{0}", video.Link) });
+                var qualityEntry = video.GetBestQuality();
 
                 var formattedTitle = Download.ConvertTitleToFilename(video.Title);
                 var output = Path.Combine(ffmpeg.OutputPath, formattedTitle);
 
                 // Downloader
-                var downloader = new FileDownloader(urls[0].DownloadUrl, ffmpeg.OutputPath, formattedTitle);
+                var downloader = new Download(qualityEntry.DownloadUrl, ffmpeg.OutputPath, formattedTitle);
 
                 // Encoder
                 var encoder = new Encoder();

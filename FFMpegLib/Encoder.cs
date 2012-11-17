@@ -327,7 +327,7 @@ namespace VideoEncoder
                     var sizeString = e.Data.Substring(e.Data.IndexOf("size=") + 5);
                     var sizeEnd = sizeString.IndexOf("kB");
                     sizeString = sizeString.Substring(0, sizeEnd).Trim();
-                    var size = int.Parse(sizeString);
+                    var size = int.Parse(sizeString) * 1024;
 
                     if (lastSizeTime != null)
                     {

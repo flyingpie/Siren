@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using B3.ViewModels;
 using VideoEncoder;
-using YouTubeDownloader;
 
 namespace B3
 {
