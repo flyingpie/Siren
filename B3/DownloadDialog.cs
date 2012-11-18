@@ -21,6 +21,8 @@ namespace B3
         {
             InitializeComponent();
 
+            this.FormClosed += DownloadDialog_FormClosed;
+
             this.viewModel = viewModel;
             this.viewModel.Changed += ViewModelChanged;
         }
@@ -37,15 +39,19 @@ namespace B3
                 lblTitle.Text = viewModel.Video.Title;
                 lblStatus.Text = viewModel.Title;
                 prgProgress.Value = viewModel.Progress;
-                lblInfo.Text = viewModel.Speed + " " + viewModel.Eta;
-                lblInfo.Text = viewModel.Eta + "s remaining";
-                lblInfo.Text += " (" + viewModel.Speed + "b/s)";
+                lblInfo.Text = Formatting.FormatSeconds(viewModel.Eta) + " remaining";
+                lblInfo.Text += " (" + Formatting.FormatBytes(viewModel.Speed) + "/s)";
 
                 if (!viewModel.Active)
                 {
                     Close();
                 }
             }
+        }
+
+        private void DownloadDialog_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
         }
     }
 }

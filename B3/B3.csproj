@@ -64,6 +64,7 @@
     <Compile Include="EncodingProgress.Designer.cs">
       <DependentUpon>EncodingProgress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formatting.cs" />
     <Compile Include="Search.cs">
       <SubType>Form</SubType>
     </Compile>

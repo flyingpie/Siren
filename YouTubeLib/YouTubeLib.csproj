@@ -51,6 +51,7 @@
     <Compile Include="Download.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DownloadData.cs" />
     <Compile Include="DownloadEventArgs.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Query.cs" />

@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using B3.ViewModels;
 using FFMpegLib;
 using VideoEncoder;
-//using YouTubeDownloader;
 using YouTubeLib;
 
 namespace B3
@@ -36,11 +29,12 @@ namespace B3
 
         void txtSearch_KeyDown(object sender, KeyEventArgs e)
         {
-            e.Handled = true;
-
             if (e.KeyCode == Keys.Return)
             {
                 button1_Click(null, null);
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
 

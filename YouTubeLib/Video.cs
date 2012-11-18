@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace YouTubeLib
 {
+    /// <summary>
+    /// Represents a single item in a results page
+    /// </summary>
     public class Video
     {
         private List<VideoQuality> qualityEntries;
@@ -19,16 +20,20 @@ namespace YouTubeLib
 
         public String Link { get; set; }
 
-        public int ViewCount { get; set; }
-
         public List<VideoQuality> QualityEntries { get { return qualityEntries; } }
 
+        /// <summary>
+        /// Loads information about in which formats the video is available
+        /// </summary>
         public void LoadQualityEntires()
         {
             qualityEntries = new List<VideoQuality>();
-            qualityEntries = Query.GetYouTubeVideoUrls(new string[] { String.Format("http://www.youtube.com{0}", Link) });
+            qualityEntries = Query.GetYouTubeVideoUrls(String.Format("{0}{1}", Query.YouTubeBaseUrl, Link));
         }
 
+        /// <summary>
+        /// Returns the best available format
+        /// </summary>
         public VideoQuality GetBestQuality()
         {
             if (qualityEntries == null)
