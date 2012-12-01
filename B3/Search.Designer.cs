@@ -98,7 +98,7 @@
             // 
             this.lblLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogo.Image = global::B3.Properties.Resources.BeatsByBaukLogo;
+            this.lblLogo.Image = global::B3.Properties.Resources.beats_by_nicole_logo_760x100;
             this.lblLogo.Location = new System.Drawing.Point(12, 9);
             this.lblLogo.Name = "lblLogo";
             this.lblLogo.Size = new System.Drawing.Size(760, 81);

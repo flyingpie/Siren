@@ -63,6 +63,16 @@ namespace B3.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap beats_by_nicole_logo_760x100 {
+            get {
+                object obj = ResourceManager.GetObject("beats_by_nicole_logo_760x100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BeatsByBaukLogo {
             get {
                 object obj = ResourceManager.GetObject("BeatsByBaukLogo", resourceCulture);

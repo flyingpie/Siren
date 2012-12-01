@@ -124,6 +124,7 @@
     <None Include="Images\beats_by_bauk_logo_760x100.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\beats_by_nicole_logo_760x100.png" />
     <Content Include="Resources\beats_by_bauk_icon_128x128.ico" />
     <EmbeddedResource Include="Resources\ffmpeg.exe" />
   </ItemGroup>
