@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using HtmlAgilityPack;
 
@@ -13,41 +16,47 @@ namespace YouTubeLib
     public static class Query
     {
         public const String YouTubeBaseUrl = "http://www.youtube.com";
-        public const String SearchUrl = "/results?search_type=videos&search_query={0}";
+        public const String SearchUrl = "/results?search_type=videos&search_query={0}&page={1}";
 
         /// <summary>
         /// Searches YouTube for the specified term and returns a list of resulting video links
         /// </summary>
         /// <param name="term">The term to search for</param>
         /// <returns>A list of video links</returns>
-        public static List<Video> Search(String term)
+        public static void Search(String term, int pages, ICollection<Video> resultList)
         {
-            var query = String.Format(YouTubeBaseUrl + SearchUrl, term);
-
-            // Create a web request with a proxy null value to speed up the request action
-            WebRequest request = WebRequest.Create(query);
-            request.Proxy = null;
-
-            WebResponse response = request.GetResponse();
-
-            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+            for (int i = 1; i <= pages; i++)
             {
-                string result = reader.ReadToEnd();
+                var query = String.Format(YouTubeBaseUrl + SearchUrl, term, i);
 
-                HtmlDocument doc = new HtmlDocument();
-                doc.LoadHtml(result);
+                // Create a web request with a proxy null value to speed up the request action
+                WebRequest request = WebRequest.Create(query);
+                request.Proxy = null;
 
-                var links = doc.DocumentNode.ChildNodes
-                    .Descendants()
-                    .Where(x => x.GetAttributeValue("class", "").Contains("yt-uix-tile-link"))
-                    .Select(x => new Video()
-                    {
-                        Title = HttpUtility.HtmlDecode(x.InnerText),
-                        Link = HttpUtility.HtmlDecode(x.GetAttributeValue("href", ""))
-                    }).ToList();
+                WebResponse response = request.GetResponse();
 
-                return links;
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    string result = reader.ReadToEnd();
+
+                    HtmlDocument doc = new HtmlDocument();
+                    doc.LoadHtml(result);
+
+                    var links = doc.DocumentNode.ChildNodes
+                        .Descendants()
+                        .Where(x => x.GetAttributeValue("class", "").Contains("yt-uix-tile-link"))
+                        .Select(x => new Video()
+                        {
+                            Title = HttpUtility.HtmlDecode(x.InnerText),
+                            Link = HttpUtility.HtmlDecode(x.GetAttributeValue("href", ""))
+                        }).ToList();
+
+                    links.ForEach(item => resultList.Add(item));
+                    //return links;
+                }
             }
+
+            //return new List<Video>();
         }
         
         /// <summary>
@@ -126,6 +135,25 @@ namespace YouTubeLib
             else return false;
 
             return true;
+        }
+    }
+
+    public class QueryTask : BackgroundWorker
+    {
+
+        protected override void OnDoWork(DoWorkEventArgs e)
+        {
+            base.OnDoWork(e);
+        }
+
+        protected override void OnProgressChanged(ProgressChangedEventArgs e)
+        {
+            base.OnProgressChanged(e);
+        }
+
+        protected override void OnRunWorkerCompleted(RunWorkerCompletedEventArgs e)
+        {
+            base.OnRunWorkerCompleted(e);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace B3
+﻿using B3.Controls;
+using YouTubeLib;
+namespace B3
 {
     partial class Search
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Search));
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lstResults = new DataListView<Video>();
             this.hdrTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -41,24 +43,24 @@
             // 
             // listView1
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lstResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BackColor = System.Drawing.Color.Black;
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lstResults.BackColor = System.Drawing.Color.Black;
+            this.lstResults.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lstResults.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.hdrTitle});
-            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(145)))), ((int)(((byte)(149)))));
-            this.listView1.FullRowSelect = true;
-            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listView1.Location = new System.Drawing.Point(12, 134);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(760, 388);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+            this.lstResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstResults.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(145)))), ((int)(((byte)(149)))));
+            this.lstResults.FullRowSelect = true;
+            this.lstResults.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lstResults.Location = new System.Drawing.Point(12, 134);
+            this.lstResults.Name = "listView1";
+            this.lstResults.Size = new System.Drawing.Size(760, 388);
+            this.lstResults.TabIndex = 2;
+            this.lstResults.UseCompatibleStateImageBehavior = false;
+            this.lstResults.View = System.Windows.Forms.View.Details;
+            this.lstResults.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             // 
             // hdrTitle
             // 
@@ -92,13 +94,13 @@
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.button1_Click);
+            this.btnSearch.Click += new System.EventHandler(this.Search_Click);
             // 
             // lblLogo
             // 
             this.lblLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogo.Image = global::B3.Properties.Resources.beats_by_nicole_logo_760x100;
+            this.lblLogo.Image = global::B3.Properties.Resources.BeatsByBaukLogo;
             this.lblLogo.Location = new System.Drawing.Point(12, 9);
             this.lblLogo.Name = "lblLogo";
             this.lblLogo.Size = new System.Drawing.Size(760, 81);
@@ -154,7 +156,7 @@
             this.Controls.Add(this.lblLogo);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lstResults);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Search";
@@ -167,7 +169,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private DataListView<Video> lstResults;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ColumnHeader hdrTitle;

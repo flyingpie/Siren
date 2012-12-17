@@ -37,10 +37,33 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\beats_by_bauk_icon_128x128.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Google\Google Data API SDK\Redist\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows API Code Pack 1.1\binaries\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows API Code Pack 1.1\binaries\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions">
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows API Code Pack 1.1\binaries\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,17 +75,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\DataList.cs" />
+    <Compile Include="Controls\DataListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DownloadDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DownloadDialog.Designer.cs">
       <DependentUpon>DownloadDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EncodingProgress.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EncodingProgress.Designer.cs">
-      <DependentUpon>EncodingProgress.cs</DependentUpon>
     </Compile>
     <Compile Include="Formatting.cs" />
     <Compile Include="Search.cs">
@@ -77,9 +98,6 @@
     <Compile Include="ViewModels\ViewModel.cs" />
     <EmbeddedResource Include="DownloadDialog.resx">
       <DependentUpon>DownloadDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EncodingProgress.resx">
-      <DependentUpon>EncodingProgress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Search.resx">
       <DependentUpon>Search.cs</DependentUpon>
