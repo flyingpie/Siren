@@ -31,7 +31,7 @@ namespace B3
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Search));
-            this.lstResults = new DataListView<Video>();
+            this.lstResults = new B3.Controls.DataListView<YouTubeLib.Video>();
             this.hdrTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -41,7 +41,7 @@ namespace B3
             this.btnBrowse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listView1
+            // lstResults
             // 
             this.lstResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -55,8 +55,8 @@ namespace B3
             this.lstResults.FullRowSelect = true;
             this.lstResults.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lstResults.Location = new System.Drawing.Point(12, 134);
-            this.lstResults.Name = "listView1";
-            this.lstResults.Size = new System.Drawing.Size(760, 388);
+            this.lstResults.Name = "lstResults";
+            this.lstResults.Size = new System.Drawing.Size(776, 426);
             this.lstResults.TabIndex = 2;
             this.lstResults.UseCompatibleStateImageBehavior = false;
             this.lstResults.View = System.Windows.Forms.View.Details;
@@ -77,7 +77,7 @@ namespace B3
             this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(2)))), ((int)(((byte)(0)))));
             this.txtSearch.Location = new System.Drawing.Point(12, 93);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(594, 35);
+            this.txtSearch.Size = new System.Drawing.Size(610, 35);
             this.txtSearch.TabIndex = 0;
             // 
             // btnSearch
@@ -88,7 +88,7 @@ namespace B3
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(2)))), ((int)(((byte)(0)))));
-            this.btnSearch.Location = new System.Drawing.Point(612, 93);
+            this.btnSearch.Location = new System.Drawing.Point(628, 93);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(160, 35);
             this.btnSearch.TabIndex = 1;
@@ -101,7 +101,7 @@ namespace B3
             this.lblLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogo.Image = global::B3.Properties.Resources.BeatsByBaukLogo;
-            this.lblLogo.Location = new System.Drawing.Point(12, 9);
+            this.lblLogo.Location = new System.Drawing.Point(28, 9);
             this.lblLogo.Name = "lblLogo";
             this.lblLogo.Size = new System.Drawing.Size(760, 81);
             this.lblLogo.TabIndex = 3;
@@ -115,9 +115,9 @@ namespace B3
             this.txtBrowse.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBrowse.Enabled = false;
             this.txtBrowse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(145)))), ((int)(((byte)(149)))));
-            this.txtBrowse.Location = new System.Drawing.Point(102, 530);
+            this.txtBrowse.Location = new System.Drawing.Point(102, 568);
             this.txtBrowse.Name = "txtBrowse";
-            this.txtBrowse.Size = new System.Drawing.Size(549, 20);
+            this.txtBrowse.Size = new System.Drawing.Size(565, 20);
             this.txtBrowse.TabIndex = 4;
             // 
             // lblDownloadFolder
@@ -125,7 +125,7 @@ namespace B3
             this.lblDownloadFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblDownloadFolder.AutoSize = true;
             this.lblDownloadFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(145)))), ((int)(((byte)(149)))));
-            this.lblDownloadFolder.Location = new System.Drawing.Point(12, 533);
+            this.lblDownloadFolder.Location = new System.Drawing.Point(12, 571);
             this.lblDownloadFolder.Name = "lblDownloadFolder";
             this.lblDownloadFolder.Size = new System.Drawing.Size(84, 13);
             this.lblDownloadFolder.TabIndex = 5;
@@ -136,7 +136,7 @@ namespace B3
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBrowse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(145)))), ((int)(((byte)(149)))));
             this.btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBrowse.Location = new System.Drawing.Point(657, 528);
+            this.btnBrowse.Location = new System.Drawing.Point(673, 566);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(115, 23);
             this.btnBrowse.TabIndex = 3;
@@ -149,7 +149,7 @@ namespace B3
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(784, 562);
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.lblDownloadFolder);
             this.Controls.Add(this.txtBrowse);
@@ -169,7 +169,7 @@ namespace B3
 
         #endregion
 
-        private DataListView<Video> lstResults;
+        private System.Windows.Forms.ListView lstResults;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ColumnHeader hdrTitle;

@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using HtmlAgilityPack;
+using YoutubeExtractor;
 
 namespace YouTubeLib
 {
@@ -66,21 +67,25 @@ namespace YouTubeLib
         {
             List<VideoQuality> urls = new List<VideoQuality>();
 
-            string html = Helper.DownloadWebPage(videoUrl);
-            string title = GetTitle(html);
+            //string html = Helper.DownloadWebPage(videoUrl);
+            //string title = GetTitle(html);
 
-            foreach (var videoLink in ExtractUrls(html))
-            {
-                VideoQuality q = new VideoQuality();
-                q.VideoUrl = videoUrl;
-                q.VideoTitle = title;
-                q.DownloadUrl = videoLink + "&title=" + title;
+            //foreach (var videoLink in ExtractUrls(html))
+            //{
+            //    VideoQuality q = new VideoQuality();
+            //    q.VideoUrl = videoUrl;
+            //    q.VideoTitle = title;
+            //    q.DownloadUrl = videoLink + "&title=" + title;
 
-                if (GetQuality(q))
-                {
-                    urls.Add(q);
-                }
-            }
+            //    if (GetQuality(q))
+            //    {
+            //        urls.Add(q);
+            //    }
+            //}
+
+            var dlUrls = DownloadUrlResolver.GetDownloadUrls(videoUrl);
+
+            urls = dlUrls.Select(url => new VideoQuality() { DownloadUrl = url.DownloadUrl, VideoTitle = url.Title }).ToList();
 
             return urls;
         }
@@ -109,7 +114,7 @@ namespace YouTubeLib
             {
                 matchs = Regex.Matches(html, "itag=(.+?)&url=(.+?)&type=(.+?)&fallback_host=(.+?)&sig=(.+?)&quality=(.+?),{0,1}", RegexOptions.Singleline);
             }
-
+            var d = HttpUtility.HtmlDecode(html);
             List<string> urls = new List<string>();
 
             foreach (Match match in matchs)

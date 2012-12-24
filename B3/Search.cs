@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -34,6 +35,11 @@ namespace B3
             ffmpeg = new FFMpegInstance(stream);
 
             downloads = new List<DownloadDialogModel>();
+        }
+
+        public DataListView<Video> ResultsList
+        {
+            get { return lstResults as DataListView<Video>; }
         }
 
         private void Search_KeyDown(object sender, KeyEventArgs e)
@@ -69,8 +75,8 @@ namespace B3
 
             var videos = new DataList<Video>();
 
-            lstResults.Bind(videos);
-            lstResults.ViewFunc = (v) => new string[] { v.Title };
+            ResultsList.Bind(videos);
+            ResultsList.ViewFunc = (v) => new string[] { v.Title };
 
             await Task.Run(() => Query.Search(txtSearch.Text, 2, videos));
 
