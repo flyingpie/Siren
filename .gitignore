@@ -2,6 +2,3 @@ bin
 obj
 *.user
 *.suo
-*.dll
-*.pdb
-*.xml
