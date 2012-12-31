@@ -1,25 +1,19 @@
 ﻿<Window x:Class="B3View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" WindowStartupLocation="CenterScreen"
+        Title="Beats by Bauk" WindowStartupLocation="CenterScreen"
         MinWidth="800" MinHeight="600"
         Width="800" Height="600"
-        AllowsTransparency="False" SnapsToDevicePixels="True" Background="#FF111111" WindowStyle="None" ResizeMode="NoResize">
+        SnapsToDevicePixels="True"
+        Background="#FF111111"
+        ResizeMode="CanResizeWithGrip">
     <Grid>
-        <Grid
-            Name="cnvTitle"
-            Background="Transparent"
-            HorizontalAlignment="Left"
-            Height="32"
-            VerticalAlignment="Top"
-            Width="800"
-            MouseMove="cnvTitle_MouseMove"/>
         <Canvas
             Name="cnvLogo"
             HorizontalAlignment="Right"
             Height="100" Width="800"
             VerticalAlignment="Top"
-            Margin="0,32,0,0">
+            Margin="-8,0,0,0">
             <Label
                 Content="beats"
                 HorizontalAlignment="Left"
@@ -41,8 +35,11 @@
                 Canvas.Left="440"
                 Width="360"/>
         </Canvas>
-        
-        <Canvas HorizontalAlignment="Left" Height="206" Margin="26,181,0,0" VerticalAlignment="Top" Width="567">
-        </Canvas>
+        <ListView Margin="0,105,308,108">
+            
+        </ListView>
+        <StatusBar Margin="0,538,0,0">
+            
+        </StatusBar>
     </Grid>
 </Window>
