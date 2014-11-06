@@ -17,14 +17,41 @@ namespace B3
 
         private DownloadDialogModel viewModel;
 
+        public string TaskText
+        {
+            get { return lblStatus.Text; }
+            set { lblStatus.Text = value; }
+        }
+
+        public int ProgressBar
+        {
+            get { return prgProgress.Value; }
+            set { prgProgress.Value = value; }
+        }
+
+        public ProgressBar Pbar
+        {
+            get { return prgProgress; }
+        }
+
+        public ProgressBarStyle PStyle
+        {
+            get { return prgProgress.Style; }
+            set { prgProgress.Style = value; }
+        }
+
         public DownloadDialog(DownloadDialogModel viewModel)
         {
             InitializeComponent();
 
             this.FormClosed += DownloadDialog_FormClosed;
 
-            this.viewModel = viewModel;
-            this.viewModel.Changed += ViewModelChanged;
+            prgProgress.Style = ProgressBarStyle.Marquee;
+            lblTitle.Text = "Downloading...";
+            lblStatus.Text = "Sorry I can't show you any progress yet :'(";
+
+            //this.viewModel = viewModel;
+            //this.viewModel.Changed += ViewModelChanged;
         }
 
         private void ViewModelChanged(object sender, EventArgs e)
@@ -38,6 +65,7 @@ namespace B3
                 Text = viewModel.Title;
                 lblTitle.Text = viewModel.Video.Title;
                 lblStatus.Text = viewModel.Title;
+                prgProgress.Style = ProgressBarStyle.Continuous;
                 prgProgress.Value = viewModel.Progress;
                 lblInfo.Text = Formatting.FormatSeconds(viewModel.Eta) + " remaining";
                 lblInfo.Text += " (" + Formatting.FormatBytes(viewModel.Speed) + "/s)";

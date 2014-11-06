@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>B3</RootNamespace>
     <AssemblyName>B3</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -65,10 +65,6 @@
     <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions">
       <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows API Code Pack 1.1\binaries\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -116,7 +112,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -149,11 +144,12 @@
   <ItemGroup>
     <Content Include="Images\beats_by_nicole_logo_760x100.png" />
     <Content Include="Resources\beats_by_bauk_icon_128x128.ico" />
+    <EmbeddedResource Include="Resources\youtube-dl.exe" />
     <EmbeddedResource Include="Resources\ffmpeg.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release ILMerge /ndebug /targetplatform:4.0 /out:Deploy\B3Merge.exe B3.exe FFMpegLib.dll HtmlAgilityPack.dll Newtonsoft.Json.dll YouTubeLib.dll YouTubeExtractor.dll Microsoft.WindowsAPICodePack.dll Microsoft.WindowsAPICodePack.Shell.dll Microsoft.WindowsAPICodePack.ShellExtensions.dll</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Release ILMerge /ndebug /targetplatform:4.0 /out:B3Merge.exe B3.exe FFMpegLib.dll HtmlAgilityPack.dll YouTubeLib.dll Microsoft.WindowsAPICodePack.dll Microsoft.WindowsAPICodePack.Shell.dll Microsoft.WindowsAPICodePack.ShellExtensions.dll</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

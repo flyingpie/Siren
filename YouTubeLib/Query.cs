@@ -10,7 +10,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using HtmlAgilityPack;
-using YoutubeExtractor;
 
 namespace YouTubeLib
 {
@@ -83,11 +82,12 @@ namespace YouTubeLib
             //    }
             //}
 
-            var dlUrls = DownloadUrlResolver.GetDownloadUrls(videoUrl);
+            //var dlUrls = DownloadUrlResolver.GetDownloadUrls(videoUrl);
 
-            urls = dlUrls.Select(url => new VideoQuality() { DownloadUrl = url.DownloadUrl, VideoTitle = url.Title }).ToList();
+            //urls = dlUrls.Select(url => new VideoQuality() { DownloadUrl = url.DownloadUrl, VideoTitle = url.Title }).ToList();
 
-            return urls;
+            //return urls;
+            return null;
         }
 
         private static string GetTitle(string RssDoc)

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTubeLib", "YouTubeLib\Yo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B3View", "B3View\B3View.csproj", "{AF2D0256-1BD8-46BB-B8C0-757D87A80895}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeExtractor", "YoutubeExtractor\YoutubeExtractor.csproj", "{ECDC127F-8DEF-4F99-8300-72C13597339D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTubeDL", "YouTubeDL\YouTubeDL.csproj", "{8BC806C1-CA7C-42CD-80F4-76E5927A0833}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,16 +67,16 @@ Global
 		{AF2D0256-1BD8-46BB-B8C0-757D87A80895}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{AF2D0256-1BD8-46BB-B8C0-757D87A80895}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{AF2D0256-1BD8-46BB-B8C0-757D87A80895}.Release|x86.ActiveCfg = Release|Any CPU
-		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Release|x86.ActiveCfg = Release|Any CPU
+		{8BC806C1-CA7C-42CD-80F4-76E5927A0833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BC806C1-CA7C-42CD-80F4-76E5927A0833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BC806C1-CA7C-42CD-80F4-76E5927A0833}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8BC806C1-CA7C-42CD-80F4-76E5927A0833}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8BC806C1-CA7C-42CD-80F4-76E5927A0833}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8BC806C1-CA7C-42CD-80F4-76E5927A0833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BC806C1-CA7C-42CD-80F4-76E5927A0833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BC806C1-CA7C-42CD-80F4-76E5927A0833}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8BC806C1-CA7C-42CD-80F4-76E5927A0833}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8BC806C1-CA7C-42CD-80F4-76E5927A0833}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
