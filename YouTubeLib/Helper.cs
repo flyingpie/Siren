@@ -7,6 +7,8 @@ namespace YouTubeLib
 {
     public static class Helper
     {
+        private static String InvalidCharacters = new String(Path.GetInvalidFileNameChars()) + new String(Path.GetInvalidPathChars());
+
         /// <summary>
         /// Decode a string
         /// </summary>
@@ -123,6 +125,19 @@ namespace YouTubeLib
             }
 
             return videoid;
+        }
+
+        public static String ConvertTitleToFilename(String title)
+        {
+            foreach (char invalidChar in InvalidCharacters)
+            {
+                title = title.Replace(invalidChar, ' ');
+            }
+
+            // Strip any double spaces
+            title = Regex.Replace(title, @"\s+", " ");
+
+            return title;
         }
     }
 }

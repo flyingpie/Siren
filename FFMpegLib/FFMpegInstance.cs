@@ -41,7 +41,7 @@ namespace FFMpegLib
         {
             try
             {
-                Directory.Delete(TempPath, true);
+                File.Delete(executablePath);
             }
             catch (Exception e)
             {

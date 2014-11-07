@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,11 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="DownloadCompletedEventArgs.cs" />
+    <Compile Include="DownloadProgressChangedEventArgs.cs" />
+    <Compile Include="DownloadStartedEventArgs.cs" />
+    <Compile Include="DownloadTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="YouTubeDLInstance.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="youtube-dl.exe" />
+    <EmbeddedResource Include="Resources\youtube-dl.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

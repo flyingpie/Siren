@@ -64,14 +64,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbortableBackgroundWorker.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Download.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DownloadData.cs" />
-    <Compile Include="DownloadEventArgs.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Query.cs">
       <SubType>Component</SubType>

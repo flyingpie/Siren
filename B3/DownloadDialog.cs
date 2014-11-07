@@ -40,18 +40,16 @@ namespace B3
             set { prgProgress.Style = value; }
         }
 
-        public DownloadDialog(DownloadDialogModel viewModel)
+        public DownloadDialog(DownloadDialogModel viewModel, string title)
         {
             InitializeComponent();
 
             this.FormClosed += DownloadDialog_FormClosed;
 
-            prgProgress.Style = ProgressBarStyle.Marquee;
-            lblTitle.Text = "Downloading...";
-            lblStatus.Text = "Sorry I can't show you any progress yet :'(";
-
-            //this.viewModel = viewModel;
-            //this.viewModel.Changed += ViewModelChanged;
+            prgProgress.Style = ProgressBarStyle.Continuous;
+            lblTitle.Text = title;
+            lblStatus.Text = "Starting download...";
+            lblInfo.Text = "";
         }
 
         private void ViewModelChanged(object sender, EventArgs e)

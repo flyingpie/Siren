@@ -18,6 +18,8 @@ namespace YouTubeLib
 
         public String Title { get; set; }
 
+        public string FormattedTitle { get { return Helper.ConvertTitleToFilename(Title); } }
+
         public String Link { get; set; }
 
         public List<VideoQuality> QualityEntries { get { return qualityEntries; } }

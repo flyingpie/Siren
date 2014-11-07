@@ -130,6 +130,10 @@
       <Project>{64418566-aea3-43ed-ad0d-ab6701ec66a5}</Project>
       <Name>FFMpegLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\YouTubeDL\YouTubeDL.csproj">
+      <Project>{8bc806c1-ca7c-42cd-80f4-76e5927a0833}</Project>
+      <Name>YouTubeDL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\YouTubeLib\YouTubeLib.csproj">
       <Project>{3d0d3a35-c516-43d8-b9b6-7b4d47a72194}</Project>
       <Name>YouTubeLib</Name>
@@ -144,7 +148,6 @@
   <ItemGroup>
     <Content Include="Images\beats_by_nicole_logo_760x100.png" />
     <Content Include="Resources\beats_by_bauk_icon_128x128.ico" />
-    <EmbeddedResource Include="Resources\youtube-dl.exe" />
     <EmbeddedResource Include="Resources\ffmpeg.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -20,7 +20,6 @@ namespace B3.ViewModels
         private const String TitleDownloading = "Downloading...";
         private const String TitleEncoding = "Encoding...";
 
-        private Download downloader;
         private Encoder encoder;
 
         private String title;
@@ -31,12 +30,8 @@ namespace B3.ViewModels
         private Video video;
         private ProcessState state;
 
-        public DownloadDialogModel(Download downloader, Encoder encoder, Video video)
+        public DownloadDialogModel(Encoder encoder, Video video)
         {
-            this.downloader = downloader;
-            this.downloader.ProgressChanged += DownloaderProgressChanged;
-            this.downloader.RunWorkerCompleted += DownloaderRunWorkerCompleted;
-
             this.encoder = encoder;
             this.encoder.OnEncodeProgress += EncoderOnEncodeProgress;
             this.encoder.OnEncodeFinished += EncoderOnEncodeFinished;
@@ -66,8 +61,8 @@ namespace B3.ViewModels
         {
             // Download progress should be from 0 to 50 percent
             progress = e.ProgressPercentage / 2;
-            speed = downloader.DownloadSpeed;
-            eta = downloader.ETA;
+            //speed = downloader.DownloadSpeed;
+            //eta = downloader.ETA;
 
             SetChanged();
         }
