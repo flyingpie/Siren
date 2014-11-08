@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using B3.Controls;
 using B3.ViewModels;
 using FFMpegLib;
-using Microsoft.WindowsAPICodePack.Taskbar;
+//using Microsoft.WindowsAPICodePack.Taskbar;
 using VideoEncoder;
 using YouTubeLib;
 using System.Diagnostics;

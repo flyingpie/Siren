@@ -56,15 +56,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.WindowsAPICodePack">
-      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows API Code Pack 1.1\binaries\Microsoft.WindowsAPICodePack.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
-      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows API Code Pack 1.1\binaries\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions">
-      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows API Code Pack 1.1\binaries\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -147,7 +138,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release ILMerge /ndebug /targetplatform:4.0 /out:B3Merge.exe B3.exe FFMpegLib.dll HtmlAgilityPack.dll YouTubeLib.dll Microsoft.WindowsAPICodePack.dll Microsoft.WindowsAPICodePack.Shell.dll Microsoft.WindowsAPICodePack.ShellExtensions.dll</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Release ILRepack /out:B3Merge.exe B3.exe FFMpegLib.dll HtmlAgilityPack.dll YouTubeLib.dll</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>if $(ConfigurationName) == Release xcopy "$(SolutionDir)\packages\ILRepack.1.25.0\tools\ILRepack.exe" "$(TargetDir)" /Y</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -30,6 +30,8 @@ namespace FFMpegLib
             var tempPath = Path.Combine(Path.GetTempPath(), "B3");
 
             executablePath = Path.Combine(tempPath, "ffmpeg.exe");
+
+            Directory.CreateDirectory(tempPath);
             
             if (!File.Exists(executablePath))
             {
