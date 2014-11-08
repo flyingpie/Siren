@@ -1,8 +1,10 @@
-﻿using System;
+﻿using FFMpegLib;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Windows.Forms;
 
 
 namespace VideoEncoder
@@ -54,6 +56,16 @@ namespace VideoEncoder
                 OnEncodeFinished(this, e);
         }
 
+        private string executablePath;
+
+        private VideoFile input;
+        private string encodingCommand;
+        private string outputFile;
+
+        public Encoder()
+        {
+        }
+
         public EncodedVideo EncodeVideo(VideoFile input, string encodingCommand, string outputFile, bool getVideoThumbnail)
         {
             EncodedVideo encoded = new EncodedVideo();
@@ -62,7 +74,7 @@ namespace VideoEncoder
             string output = RunProcess(Params);
             encoded.EncodingLog = output;
             encoded.EncodedVideoPath = outputFile;
-            
+
             if (File.Exists(outputFile))
             {
                 encoded.Success = true;
@@ -84,6 +96,14 @@ namespace VideoEncoder
             }
 
             return encoded;
+        }
+
+        public void EncodeVideoAsync(string inputFilePath, string outputFilePath, OutputMode outputMode, Control caller)
+        {
+            string encodingCommand = "-ab 192000";
+            int threadCount = 2;
+
+            EncodeVideoAsync(new VideoFile(inputFilePath), encodingCommand, outputFilePath, caller, threadCount);
         }
 
         /// <summary>
@@ -206,7 +226,7 @@ namespace VideoEncoder
             oInfo.CreateNoWindow = true;
             oInfo.RedirectStandardOutput = false;
             oInfo.RedirectStandardError = true;
-            
+
             //Construct the process
             Process proc = new Process();
 
@@ -323,7 +343,7 @@ namespace VideoEncoder
 
                     epe.Percentage = (short)Math.Round(seconds / totalSeconds * 100.0);
 
-                    
+
                     var sizeString = e.Data.Substring(e.Data.IndexOf("size=") + 5);
                     var sizeEnd = sizeString.IndexOf("kB");
                     sizeString = sizeString.Substring(0, sizeEnd).Trim();
@@ -369,7 +389,7 @@ namespace VideoEncoder
             {
                 //Get the process
                 Process proc = (Process)sender;
-                
+
                 //Murder
                 try { proc.Kill(); }
                 catch { }
@@ -437,9 +457,9 @@ namespace VideoEncoder
 
                 //Wait for exit
                 proc.WaitForExit();
-	 
+
                 //Release resources
-	            proc.Close();
+                proc.Close();
             }
             catch (Exception)
             {
@@ -569,7 +589,7 @@ namespace VideoEncoder
                 if (p.ToLower().Contains("fps"))
                 {
                     Double.TryParse(p.ToLower().Replace("fps", "").Replace(".", ",").Trim(), out dFPS);
-                    
+
                     break;
                 }
                 else if (p.ToLower().Contains("tbr"))

@@ -38,6 +38,7 @@ namespace B3
             this.txtBrowse = new System.Windows.Forms.TextBox();
             this.lblDownloadFolder = new System.Windows.Forms.Label();
             this.btnBrowse = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lstResults
@@ -143,12 +144,24 @@ namespace B3
             this.btnBrowse.UseVisualStyleBackColor = false;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(729, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "version 1.1";
+            // 
             // Search
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.lblDownloadFolder);
             this.Controls.Add(this.txtBrowse);
@@ -168,7 +181,7 @@ namespace B3
 
         #endregion
 
-        private System.Windows.Forms.ListView lstResults;
+		private System.Windows.Forms.ListView lstResults;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ColumnHeader hdrTitle;
@@ -176,6 +189,7 @@ namespace B3
         private System.Windows.Forms.TextBox txtBrowse;
         private System.Windows.Forms.Label lblDownloadFolder;
         private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.Label label1;
     }
 }
 

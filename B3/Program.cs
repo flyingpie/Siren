@@ -14,16 +14,16 @@ namespace B3
         [STAThread]
         static void Main()
         {
-            try
-            {
+            //try
+            //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Search());
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Your boyfriend fucked up, hit him!", "Nooooooo!! (Star Wars reference)");
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    MessageBox.Show("Your boyfriend fucked up, hit him!", "Nooooooo!! (Star Wars reference)");
+            //}
         }
     }
 }

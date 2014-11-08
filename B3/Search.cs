@@ -14,18 +14,17 @@ using Microsoft.WindowsAPICodePack.Taskbar;
 using VideoEncoder;
 using YouTubeLib;
 using System.Diagnostics;
-using YouTubeDL;
+using YouTubeLib;
+using YouTubeLib.Download;
 
 namespace B3
 {
     public partial class Search : Form
     {
         private FFMpegInstance ffmpeg;
-        private YouTubeDLInstance youtubedl;
+        private YouTubeAPI youtubedl;
 
         private List<DownloadDialogModel> downloads;
-
-        private string youtubeDlPath;
 
         public Search()
         {
@@ -35,10 +34,8 @@ namespace B3
             txtSearch.KeyDown += Search_KeyDown;
             FormClosed += Search_FormClosed;
 
-            var ffmpegStream = GetType().Assembly.GetManifestResourceStream("B3.Resources.ffmpeg.exe");
-            ffmpeg = new FFMpegInstance(ffmpegStream);
-
-            youtubedl = new YouTubeDLInstance();
+            ffmpeg = new FFMpegInstance();
+            youtubedl = new YouTubeAPI();
 
             downloads = new List<DownloadDialogModel>();
         }
@@ -71,7 +68,15 @@ namespace B3
             ResultsList.Bind(videos);
             ResultsList.ViewFunc = (v) => new string[] { v.Title };
 
-            Task.Factory.StartNew(() => Query.Search(txtSearch.Text, 2, videos));
+            Task.Factory.StartNew(() =>
+                {
+                    //Query.Search(txtSearch.Text, 2, videos)
+
+                    foreach (var video in youtubedl.Search(txtSearch.Text, 2))
+                    {
+                        videos.Add(video);
+                    }
+                });
 
             btnSearch.Enabled = true;
             txtSearch.Enabled = true;
@@ -87,11 +92,7 @@ namespace B3
 
                 string tempFile = null;
 
-                // Encoder
-                var encoder = new Encoder();
-                encoder.FFmpegPath = ffmpeg.ExecutablePath;
-                
-                // Downloader
+                var encoder = ffmpeg.CreateEncoder();
                 var downloader = youtubedl.CreateDownload(video.Link);
 
                 downloader.DownloadProgressChanged += (object sender, DownloadProgressChangedEventArgs args) =>
@@ -102,7 +103,8 @@ namespace B3
                 downloader.DownloadCompleted += (object sender, DownloadCompletedEventArgs args) =>
                 {
                     tempFile = args.FileName;
-                    encoder.EncodeVideoAsync(new VideoFile(args.FileName), "-ab 192000", Path.Combine(txtBrowse.Text, video.FormattedTitle + ".mp3"), this, 1);
+                    var outputFile = Path.Combine(txtBrowse.Text, video.FormattedTitle + ".mp3");
+                    encoder.EncodeVideoAsync(args.FileName, outputFile, OutputMode.Mp3, this);
                 };
                 encoder.OnEncodeProgress += (object fSender, EncodeProgressEventArgs fE) =>
                 {
@@ -115,6 +117,7 @@ namespace B3
                     File.Delete(tempFile);
                     view.Close();
                 };
+                
                 downloader.StartAsync(this);
                 
                 view.Show();

@@ -40,6 +40,12 @@ namespace B3
             set { prgProgress.Style = value; }
         }
 
+        public string Info
+        {
+            get { return lblStatus.Text; }
+            set { lblStatus.Text = value; }
+        }
+
         public DownloadDialog(DownloadDialogModel viewModel, string title)
         {
             InitializeComponent();

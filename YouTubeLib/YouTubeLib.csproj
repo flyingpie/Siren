@@ -64,6 +64,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Download\DownloadCompletedEventArgs.cs" />
+    <Compile Include="Download\DownloadProgressChangedEventArgs.cs" />
+    <Compile Include="Download\DownloadStartedEventArgs.cs" />
+    <Compile Include="Download\DownloadTask.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Query.cs">
       <SubType>Component</SubType>
@@ -71,9 +75,13 @@
     <Compile Include="Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VideoQuality.cs" />
+    <Compile Include="YouTubeAPI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\youtube-dl.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
