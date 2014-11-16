@@ -43,6 +43,7 @@ namespace YouTubeLib.Download
                     string filePath = null;
                     while ((line = proc.StandardOutput.ReadLine()) != null)
                     {
+                        Console.WriteLine(line);
                         if (line.Contains(LINE_DESTINATION))
                         {
                             filePath = line.Substring(line.IndexOf(LINE_DESTINATION) + LINE_DESTINATION.Length).Trim();
@@ -65,6 +66,13 @@ namespace YouTubeLib.Download
                                 // Parsing of percentage failed
                             }
                         }
+                    }
+
+                    string error = proc.StandardError.ReadToEnd();
+
+                    if(!string.IsNullOrEmpty(error))
+                    {
+                        throw new ApplicationException(error);
                     }
 
                     //Wait for exit
