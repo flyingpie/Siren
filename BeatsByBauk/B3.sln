@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B3", "B3\B3.csproj", "{A0BF4318-DE9F-451A-8EEE-01E48425D339}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeatsByBauk", "BeatsByBauk\BeatsByBauk.csproj", "{A0BF4318-DE9F-451A-8EEE-01E48425D339}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFMpegLib", "FFMpegLib\FFMpegLib.csproj", "{64418566-AEA3-43ED-AD0D-AB6701EC66A5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTubeLib", "YouTubeLib\YouTubeLib.csproj", "{3D0D3A35-C516-43D8-B9B6-7B4D47A72194}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B3View", "B3View\B3View.csproj", "{AF2D0256-1BD8-46BB-B8C0-757D87A80895}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{DA6FD179-5A3A-43CD-A286-F98FBCC9A1AC}"
 	ProjectSection(SolutionItems) = preProject
